@@ -1,0 +1,44 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; text-align: center;">
+    <h2 style="margin: 0 0 10px 0;">📊 مرحباً بك في إدارة موقع الدكتور أحمد أبو صفية</h2>
+    <p style="margin: 0; opacity: 0.9;">لوحة تحكم شاملة لإدارة ومراقبة إحصائيات الموقع</p>
+</div>
+
+{% if quick_stats %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+    <div style="background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: bold;">{{ quick_stats.total_visitors }}</div>
+        <div style="opacity: 0.9;">إجمالي الزوار</div>
+    </div>
+    <div style="background: #007cba; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: bold;">{{ quick_stats.today_visitors }}</div>
+        <div style="opacity: 0.9;">زوار اليوم</div>
+    </div>
+    <div style="background: #ffc107; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: bold;">{{ quick_stats.total_page_views }}</div>
+        <div style="opacity: 0.9;">مشاهدات الصفحات</div>
+    </div>
+    <div style="background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center;">
+        <div style="font-size: 2rem; font-weight: bold;">{{ quick_stats.total_clicks }}</div>
+        <div style="opacity: 0.9;">إجمالي النقرات</div>
+    </div>
+</div>
+{% endif %}
+
+<div style="text-align: center; margin-bottom: 30px;">
+    <a href="/dashboard/" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1rem; display: inline-block; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+        📊 عرض الإحصائيات المفصلة
+    </a>
+</div>
+
+{{ block.super }}
+
+<style>
+.dashboard-stats a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+</style>
+{% endblock %}

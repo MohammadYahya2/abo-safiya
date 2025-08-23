@@ -1,0 +1,501 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدكتور أحمد أبو صفية - محلل مالي</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="google-site-verification" content="lacTOp1azmS9Hx_3iRc7a0M6SIDFt2E25ZLpF40kQEY" />
+</head>
+<body>
+    <!-- Messages -->
+    {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                    <button type="button" class="close-btn" onclick="this.parentElement.remove()">×</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{% static 'images/logo.png' %}" alt="T4T Trading Logo" class="logo-img">
+            </div>
+            <div class="nav-menu">
+                <a href="#hero" class="nav-link">الرئيسية</a>
+                <a href="#services" class="nav-link">الخدمات</a>
+                <a href="#packages" class="nav-link">الباقات</a>
+                <a href="#contact" class="nav-link">تواصل معنا</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-fadeInUp">
+                    الدكتور أحمد أبو صفية
+                </h1>
+                <h2 class="hero-subtitle animate-fadeInUp delay-1">
+                    محلل مالي محترف
+                </h2>
+                <p class="hero-description animate-fadeInUp delay-2">
+                    خبرة واسعة في التحليل المالي والاستثمار مع استراتيجيات مبتكرة لتحقيق أفضل النتائج في الأسواق المالية
+                </p>
+                <div class="hero-buttons animate-fadeInUp delay-3">
+                    <a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" 
+                       class="cta-button primary" target="_blank" onclick="trackClick('cta_primary')"
+                        <i class="fas fa-chart-line"></i>
+                        لفتح حساب من هنا
+                    </a>
+                    <a href="#services" class="cta-button secondary" onclick="trackClick('cta_secondary')"
+                        <i class="fas fa-arrow-down"></i>
+                        اكتشف خدماتنا
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image animate-fadeInRight">
+                <div class="image-container">
+                    <img src="{% static 'images/abo.png' %}" alt="الدكتور أحمد أبو صفية" class="profile-img">
+                    <div class="image-glow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">خدماتنا المتميزة</h2>
+                <p class="section-description animate-on-scroll">
+                    نقدم مجموعة شاملة من الخدمات المالية المتخصصة لتحقيق أهدافك الاستثمارية
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll" data-delay="0">
+                    <div class="service-icon">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                    <h3 class="service-title">إستراتيجية أبو صفية</h3>
+                    <p class="service-description">
+                        استراتيجية تداول مبتكرة ومجربة تعتمد على التحليل الفني والأساسي لتحقيق أفضل النتائج
+                    </p>
+                    <div class="service-features">
+                        <span class="feature-tag">تحليل متقدم</span>
+                        <span class="feature-tag">نتائج مثبتة</span>
+                    </div>
+                    <a href="/services/strategy/" class="service-details-btn">
+                        <i class="fas fa-info-circle"></i>
+                        تفاصيل
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll" data-delay="200">
+                    <div class="service-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3 class="service-title">لايف على التليجرام</h3>
+                    <p class="service-description">
+                        تحليلات مباشرة وتوصيات فورية عبر قناة التليجرام مع متابعة لحظية للأسواق
+                    </p>
+                    <div class="service-features">
+                        <span class="feature-tag">تحديثات فورية</span>
+                        <span class="feature-tag">تفاعل مباشر</span>
+                    </div>
+                    <a href="/services/telegram/" class="service-details-btn">
+                        <i class="fas fa-info-circle"></i>
+                        تفاصيل
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll" data-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="service-title">صفقات داخلية</h3>
+                    <p class="service-description">
+                        فرص استثمارية حصرية وصفقات مدروسة بعناية لعملائنا المميزين
+                    </p>
+                    <div class="service-features">
+                        <span class="feature-tag">حصري</span>
+                        <span class="feature-tag">عوائد مميزة</span>
+                    </div>
+                    <a href="/services/internal-deals/" class="service-details-btn">
+                        <i class="fas fa-info-circle"></i>
+                        تفاصيل
+                    </a>
+                </div>
+
+                <div class="service-card animate-on-scroll" data-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="service-title">ربط حسابك بــ MT5</h3>
+                    <p class="service-description">
+                        ربط سهل وآمن لحسابك مع منصة MetaTrader 5 لتنفيذ الصفقات بكفاءة عالية
+                    </p>
+                    <div class="service-features">
+                        <span class="feature-tag">أمان عالي</span>
+                        <span class="feature-tag">تنفيذ سريع</span>
+                    </div>
+                    <a href="/services/mt5-connection/" class="service-details-btn">
+                        <i class="fas fa-info-circle"></i>
+                        تفاصيل
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">باقاتنا الاستثمارية</h2>
+                <p class="section-description animate-on-scroll">
+                    اختر الباقة التي تناسب احتياجاتك وابدأ رحلتك نحو النجاح المالي
+                </p>
+            </div>
+            
+            <div class="packages-grid">
+                <!-- VIP Package -->
+                <div class="package-card vip-package animate-on-scroll" data-delay="0">
+                    <div class="package-badge">
+                        <i class="fas fa-crown"></i>
+                        VIP
+                    </div>
+                    <div class="package-header">
+                        <h3 class="package-title">باقة VIP</h3>
+                        <div class="package-price">
+                            <span class="price-range">$100 - $900</span>
+                            <span class="price-label">إيداع</span>
+                        </div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>دخول قناة VIP الحصرية</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>لايف مباشر للاستراتيجية على الذهب</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>صفقات داخلية مختارة</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>أخبار السوق الفورية</span>
+                        </div>
+                    </div>
+                    
+                    <div class="package-footer">
+                        <a href="https://wa.me/970592363634?text=أريد%20الاشتراك%20في%20باقة%20VIP" 
+                           target="_blank" class="package-btn vip-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            تواصل مع الدكتور
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Business Package -->
+                <div class="package-card business-package animate-on-scroll" data-delay="200">
+                    <div class="package-badge">
+                        <i class="fas fa-gem"></i>
+                        رجال الأعمال
+                    </div>
+                    <div class="package-header">
+                        <h3 class="package-title">باقة رجال الأعمال</h3>
+                        <div class="package-price">
+                            <span class="price-range">$1,000 - $10,000</span>
+                            <span class="price-label">إيداع</span>
+                        </div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>دخول قناة VIP الحصرية</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>لايف مباشر للاستراتيجية على الذهب</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>صفقات داخلية مختارة</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>أخبار السوق الفورية</span>
+                        </div>
+                        <div class="feature-item premium">
+                            <i class="fas fa-star"></i>
+                            <span>كورسان تدريبيان متكاملان</span>
+                        </div>
+                        <div class="feature-item premium">
+                            <i class="fas fa-robot"></i>
+                            <span>ربط حساب التداول أوتوماتيكياً</span>
+                        </div>
+                    </div>
+                    
+                    <div class="package-footer">
+                        <a href="https://wa.me/970592363634?text=أريد%20الاشتراك%20في%20باقة%20رجال%20الأعمال" 
+                           target="_blank" class="package-btn business-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            تواصل مع الدكتور
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WhatsApp Contact CTA -->
+            <div class="packages-cta animate-on-scroll" data-delay="400">
+                <div class="cta-content">
+                    <h3>هل تحتاج لمساعدة في اختيار الباقة المناسبة؟</h3>
+                    <p>تواصل مع الدكتور أحمد أبو صفية مباشرة للحصول على استشارة مجانية</p>
+                    <a href="https://wa.me/970592363634?text=أريد%20استشارة%20حول%20الباقات%20المتاحة" 
+                       target="_blank" class="whatsapp-cta-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        تواصل مع الدكتور على واتساب
+                        <span class="button-pulse"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2 class="cta-title">ابدأ رحلتك الاستثمارية اليوم</h2>
+                <p class="cta-description">
+                    انضم إلى آلاف المستثمرين الذين يثقون في خبرتنا ويحققون أرباحاً مستدامة
+                </p>
+                <a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" 
+                   class="cta-button-large" target="_blank" onclick="trackClick('cta_large')"
+                    <i class="fas fa-rocket"></i>
+                    لفتح حساب من هنا
+                    <span class="button-glow"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">تواصل معنا</h2>
+                <p class="section-description animate-on-scroll">
+                    نحن هنا للإجابة على استفساراتك ومساعدتك في بدء رحلتك الاستثمارية
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>واتساب</h3>
+                            <p>للتواصل المباشر والاستفسارات السريعة</p>
+                            <a href="https://wa.me/970592363634" target="_blank" class="contact-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                970592363634
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>تليجرام</h3>
+                            <p>للتحليلات المباشرة والتوصيات الفورية</p>
+                            <a href="https://t.me/abusafiya1234" target="_blank" class="contact-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                @abusafiya1234
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>إنستجرام</h3>
+                            <p>لآخر الأخبار والتحديثات المالية</p>
+                            <a href="https://www.instagram.com/dr.ahmad.t4t/" target="_blank" class="contact-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                @dr.ahmad.t4t
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form animate-on-scroll" data-delay="200">
+                    <form class="contact-form-container" action="{% url 'landing:contact_submit' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">الخدمة المطلوبة</label>
+                            <div class="select-wrapper">
+                                <select id="service" name="service" class="form-select">
+                                    <option value="" disabled selected>اختر الخدمة المطلوبة</option>
+                                    <option value="strategy">🏆 إستراتيجية أبو صفية</option>
+                                    <option value="telegram">📱 لايف على التليجرام</option>
+                                    <option value="internal-deals">🤝 صفقات داخلية</option>
+                                    <option value="mt5-connection">🔗 ربط حساب MT5</option>
+                                </select>
+                                <div class="select-arrow">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">رسالتك</label>
+                            <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">تابعنا على مواقع التواصل الاجتماعي</h2>
+                <p class="section-description animate-on-scroll">
+                    كن جزءاً من مجتمعنا واحصل على آخر التحديثات والتحليلات المالية
+                </p>
+            </div>
+            
+            <div class="social-grid">
+                <a href="https://t.me/abusafiya1234" target="_blank" class="social-card telegram animate-on-scroll" data-delay="0">
+                    <div class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>تليجرام</h3>
+                        <p>انضم لقناتنا للحصول على التحليلات المباشرة</p>
+                        <span class="social-cta">انضم الآن</span>
+                    </div>
+                    <div class="social-glow"></div>
+                </a>
+                
+                <a href="https://wa.me/970592363634" target="_blank" class="social-card whatsapp animate-on-scroll" data-delay="200">
+                    <div class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>واتساب</h3>
+                        <p>تواصل معنا مباشرة للاستفسارات والدعم</p>
+                        <span class="social-cta">تواصل معنا</span>
+                    </div>
+                    <div class="social-glow"></div>
+                </a>
+                
+                <a href="https://www.instagram.com/dr.ahmad.t4t/" target="_blank" class="social-card instagram animate-on-scroll" data-delay="400">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-content">
+                        <h3>إنستجرام</h3>
+                        <p>تابع آخر الأخبار والنصائح المالية</p>
+                        <span class="social-cta">تابعنا</span>
+                    </div>
+                    <div class="social-glow"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="T4T Trading Logo" class="footer-logo-img">
+                    <h3>الدكتور أحمد أبو صفية</h3>
+                    <p>محلل مالي محترف</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" target="_blank">فتح حساب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/abusafiya1234" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/970592363634
+" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/dr.ahmad.t4t/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 الدكتور أحمد أبو صفية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

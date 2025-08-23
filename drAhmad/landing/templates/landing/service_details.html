@@ -1,0 +1,183 @@
+{% load static %}
+{% load math_filters %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{% static 'images/logo.png' %}" alt="T4T Trading Logo" class="logo-img">
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">الرئيسية</a>
+                <a href="/#services" class="nav-link">الخدمات</a>
+                <a href="/#contact" class="nav-link">تواصل معنا</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="service-hero-content">
+                <div class="service-hero-icon">
+                    <i class="{{ service_icon }}"></i>
+                </div>
+                <h1 class="service-hero-title">{{ service_name }}</h1>
+                <p class="service-hero-description">{{ description }}</p>
+                <div class="hero-actions">
+                    <a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" 
+                       class="cta-button primary" target="_blank">
+                        <i class="fas fa-rocket"></i>
+                        ابدأ الآن
+                    </a>
+                    <a href="/#contact" class="cta-button secondary">
+                        <i class="fas fa-phone"></i>
+                        تواصل معنا
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="service-statistics">
+        <div class="container">
+            <div class="stats-grid">
+                {% for stat in statistics %}
+                <div class="stat-card animate-on-scroll" data-delay="{{ forloop.counter0|multiply:100 }}">
+                    <div class="stat-icon">
+                        <i class="{{ stat.icon }}"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">{{ stat.value }}</div>
+                        <div class="stat-label">{{ stat.label }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="service-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">مميزات الخدمة</h2>
+                <p class="section-description animate-on-scroll">
+                    تعرف على المميزات الفريدة التي تجعل هذه الخدمة الخيار الأمثل لك
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                {% for feature in features %}
+                <div class="feature-item animate-on-scroll" data-delay="{{ forloop.counter0|multiply:100 }}">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">{{ feature }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="service-benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-on-scroll">فوائد الخدمة</h2>
+                <p class="section-description animate-on-scroll">
+                    اكتشف كيف ستساعدك هذه الخدمة في تحقيق أهدافك الاستثمارية
+                </p>
+            </div>
+            
+            <div class="benefits-grid">
+                {% for benefit in benefits %}
+                <div class="benefit-card animate-on-scroll" data-delay="{{ forloop.counter0|multiply:150 }}">
+                    <div class="benefit-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <p>{{ benefit }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="service-cta">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2 class="cta-title">جاهز للبدء؟</h2>
+                <p class="cta-description">
+                    انضم إلى آلاف العملاء الذين يحققون أرباحاً مستدامة من خلال خدماتنا المتميزة
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" 
+                       class="cta-button-large" target="_blank">
+                        <i class="fas fa-rocket"></i>
+                        ابدأ الآن - مجاناً
+                        <span class="button-glow"></span>
+                    </a>
+                    <a href="/#contact" class="cta-button secondary">
+                        <i class="fas fa-comments"></i>
+                        تحدث مع خبير
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{% static 'images/logo.png' %}" alt="T4T Trading Logo" class="footer-logo-img">
+                    <h3>الدكتور أحمد أبو صفية</h3>
+                    <p>محلل مالي محترف</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a href="/">الرئيسية</a></li>
+                        <li><a href="/#services">الخدمات</a></li>
+                        <li><a href="https://signup.4t.com/ar/?utm_source=IB&utm_medium=Direct&link_id=vuygz25660&referral_id=0023161" target="_blank">فتح حساب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/abusafiya1234" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/970592363634" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/dr.ahmad.t4t/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 الدكتور أحمد أبو صفية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

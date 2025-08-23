@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | إدارة موقع الدكتور أحمد أبو صفية{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}" style="color: #ffc107; text-decoration: none;">
+        📊 إدارة موقع الدكتور أحمد أبو صفية
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 10px; text-align: center; margin-bottom: 20px;">
+    <a href="{% url 'admin:index' %}" style="color: white; text-decoration: none; margin: 0 15px; font-weight: bold;">🏠 الرئيسية</a>
+    <a href="/dashboard/" style="color: white; text-decoration: none; margin: 0 15px; font-weight: bold;">📊 الإحصائيات</a>
+    <a href="{% url 'admin:landing_visitor_changelist' %}" style="color: white; text-decoration: none; margin: 0 15px; font-weight: bold;">👥 الزوار</a>
+    <a href="{% url 'admin:landing_pageview_changelist' %}" style="color: white; text-decoration: none; margin: 0 15px; font-weight: bold;">📄 المشاهدات</a>
+</div>
+{% endblock %}

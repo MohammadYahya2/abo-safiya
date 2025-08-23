@@ -1,0 +1,29 @@
+# Django Web Framework
+Django==4.2.23
+
+# Production Server (Optional)
+gunicorn==21.2.0
+
+# Database (Optional - for PostgreSQL)
+# psycopg2-binary==2.9.7
+
+# Environment Variables Management
+python-decouple==3.8
+
+# Static Files Management for Production
+whitenoise==6.5.0
+
+# Image Processing (Optional)
+Pillow==10.0.0
+
+# Development Tools (Optional)
+# django-debug-toolbar==4.2.0
+
+# Security (Optional)
+# django-cors-headers==4.3.1
+
+# API Development (Optional)
+# djangorestframework==3.14.0
+
+# Timezone Support
+pytz==2023.3
