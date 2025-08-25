@@ -95,8 +95,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
     """
     واجهة إدارة رسائل التواصل
     """
-    list_display = ['name', 'email', 'service', 'created_at', 'is_read']
-    list_filter = ['service', 'is_read', 'created_at']
+    list_display = ['name', 'email', 'service', 'created_at', 'is_read', 'email_sent_status']
+    list_filter = ['service', 'is_read', 'email_sent', 'created_at']
     search_fields = ['name', 'email', 'phone']
     readonly_fields = ['created_at']
     list_per_page = 50
@@ -111,7 +111,18 @@ class ContactMessageAdmin(admin.ModelAdmin):
         ('إدارة', {
             'fields': ('is_read', 'created_at')
         }),
+        ('حالة البريد الإلكتروني', {
+            'fields': ('email_sent', 'email_error'),
+            'classes': ('collapse',)
+        }),
     )
+    
+    def email_sent_status(self, obj):
+        if obj.email_sent:
+            return "✅ تم الإرسال"
+        else:
+            return "❌ فشل الإرسال"
+    email_sent_status.short_description = 'حالة البريد'
     
     actions = ['mark_as_read', 'mark_as_unread']
     

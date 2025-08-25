@@ -135,7 +135,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'Dr.ahmadabusaffia608@gmail.com'
-EMAIL_HOST_PASSWORD = 'aetr ejjm hpwy giww'  # استبدل بكلمة مرور التطبيق الفعلية
+EMAIL_HOST_PASSWORD = 'aetr ejjm hpwy giww'  # كلمة مرور التطبيق
 DEFAULT_FROM_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
 ADMIN_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
+EMAIL_TIMEOUT = 30
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+
+# إعدادات إضافية للسيرفر
+SERVER_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
+ADMINS = [('Dr. Ahmad Abu Saffia', 'Dr.ahmadabusaffia608@gmail.com')]

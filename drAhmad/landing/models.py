@@ -155,6 +155,8 @@ class ContactMessage(models.Model):
     message = models.TextField(verbose_name='الرسالة')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='تاريخ الإرسال')
     is_read = models.BooleanField(default=False, verbose_name='تم القراءة')
+    email_sent = models.BooleanField(default=False, verbose_name='تم إرسال البريد')
+    email_error = models.TextField(blank=True, null=True, verbose_name='خطأ البريد الإلكتروني')
     
     class Meta:
         verbose_name = 'رسالة تواصل'

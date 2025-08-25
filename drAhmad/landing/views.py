@@ -167,6 +167,9 @@ def contact_submit(request):
             """
             
             # إرسال البريد الإلكتروني
+            email_sent = False
+            error_details = ""
+            
             try:
                 # إنشاء بريد إلكتروني مع دعم HTML و TEXT
                 email_message = EmailMultiAlternatives(
@@ -180,14 +183,43 @@ def contact_submit(request):
                 email_message.attach_alternative(html_content, "text/html")
                 
                 # إرسال البريد
-                email_message.send(fail_silently=False)
+                result = email_message.send(fail_silently=False)
                 
-                # رسالة نجاح
-                messages.success(request, '✅ تم إرسال رسالتك بنجاح! سيتم التواصل معك قريباً.')
-                
+                if result == 1:
+                    email_sent = True
+                    # رسالة نجاح
+                    messages.success(request, '✅ تم إرسال رسالتك بنجاح! سيتم التواصل معك قريباً.')
+                else:
+                    error_details = "Email send result was 0"
+                    
             except Exception as email_error:
-                # في حالة فشل إرسال البريد، سجل الخطأ لكن أظهر رسالة نجاح للمستخدم
+                # تسجيل تفاصيل الخطأ
+                error_details = str(email_error)
                 print(f"Email sending failed: {email_error}")
+                print(f"Email settings - Host: {settings.EMAIL_HOST}, Port: {settings.EMAIL_PORT}")
+                print(f"Email user: {settings.EMAIL_HOST_USER}")
+                
+                # محاولة إرسال بطريقة أبسط
+                try:
+                    send_mail(
+                        subject=email_subject,
+                        message=text_content,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[settings.ADMIN_EMAIL],
+                        fail_silently=False,
+                    )
+                    email_sent = True
+                    messages.success(request, '✅ تم إرسال رسالتك بنجاح! (طريقة بديلة)')
+                except Exception as fallback_error:
+                    print(f"Fallback email also failed: {fallback_error}")
+            
+            # حفظ حالة الإرسال في قاعدة البيانات
+            contact_message.email_sent = email_sent
+            contact_message.email_error = error_details if not email_sent else ""
+            contact_message.save()
+            
+            # رسالة للمستخدم إذا لم يتم الإرسال
+            if not email_sent:
                 messages.success(request, '📝 تم استلام رسالتك وحفظها! سيتم التواصل معك قريباً.')
             
         except Exception as e:
