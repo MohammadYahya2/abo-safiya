@@ -130,20 +130,66 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Email Configuration
+# Email Configuration - استخدام SMTP الاستضافة (الطريقة التقليدية)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'mail.drahmadbot.site'  # SMTP الخاص بالدومين
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'Dr.ahmadabusaffia608@gmail.com'
-EMAIL_HOST_PASSWORD = 'aetr ejjm hpwy giww'  # كلمة مرور التطبيق
-DEFAULT_FROM_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
+EMAIL_HOST_USER = 'noreply@drahmadbot.site'  # إيميل من نفس الدومين
+EMAIL_HOST_PASSWORD = 'Ahmad@@2025'  # كلمة مرور الإيميل
+DEFAULT_FROM_EMAIL = 'noreply@drahmadbot.site'
 ADMIN_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
-EMAIL_TIMEOUT = 30
-EMAIL_SSL_CERTFILE = None
-EMAIL_SSL_KEYFILE = None
+EMAIL_TIMEOUT = 60
 
-# إعدادات إضافية للسيرفر
-SERVER_EMAIL = 'Dr.ahmadabusaffia608@gmail.com'
+# إعدادات SendGrid
+SERVER_EMAIL = 'noreply@drahmadbot.site'
 ADMINS = [('Dr. Ahmad Abu Saffia', 'Dr.ahmadabusaffia608@gmail.com')]
+
+# إعدادات بديلة للتجربة (استخدم واحدة تلو الأخرى)
+ALTERNATIVE_EMAIL_SETTINGS = [
+    # الخيار 1: SMTP الدومين العادي
+    {
+        'EMAIL_HOST': 'mail.drahmadbot.site',
+        'EMAIL_PORT': 587,
+        'EMAIL_USE_TLS': True,
+        'EMAIL_USE_SSL': False,
+    },
+    # الخيار 2: localhost مع Port 25
+    {
+        'EMAIL_HOST': 'localhost',
+        'EMAIL_PORT': 25,
+        'EMAIL_USE_TLS': False,
+        'EMAIL_USE_SSL': False,
+    },
+    # الخيار 3: SSL مع Port 465
+    {
+        'EMAIL_HOST': 'mail.drahmadbot.site',
+        'EMAIL_PORT': 465,
+        'EMAIL_USE_TLS': False,
+        'EMAIL_USE_SSL': True,
+    },
+    # الخيار 4: SMTP الاستضافة المباشر
+    {
+        'EMAIL_HOST': 'smtp.drahmadbot.site',
+        'EMAIL_PORT': 587,
+        'EMAIL_USE_TLS': True,
+        'EMAIL_USE_SSL': False,
+    },
+    # الخيار 5: PHP Mail كبديل
+    {
+        'EMAIL_HOST': 'localhost',
+        'EMAIL_PORT': 587,
+        'EMAIL_USE_TLS': False,
+        'EMAIL_USE_SSL': False,
+    }
+]
+
+# إعدادات Gmail للطوارئ
+GMAIL_SETTINGS = {
+    'EMAIL_HOST': 'smtp.gmail.com',
+    'EMAIL_PORT': 587,
+    'EMAIL_USE_TLS': True,
+    'EMAIL_HOST_USER': 'Dr.ahmadabusaffia608@gmail.com',
+    'EMAIL_HOST_PASSWORD': 'aetr ejjm hpwy giww',
+}

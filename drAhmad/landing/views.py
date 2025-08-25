@@ -166,40 +166,32 @@ def contact_submit(request):
 تاريخ الإرسال: {contact_message.created_at.strftime('%d/%m/%Y - %H:%M')}
             """
             
-            # إرسال البريد الإلكتروني
+            # إرسال البريد الإلكتروني مع طرق متعددة
             email_sent = False
             error_details = ""
+            method_used = ""
             
+            # الطريقة الأولى: استخدام SendGrid (الأفضل والأكثر موثوقية)
             try:
-                # إنشاء بريد إلكتروني مع دعم HTML و TEXT
                 email_message = EmailMultiAlternatives(
                     subject=email_subject,
                     body=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     to=[settings.ADMIN_EMAIL],
                 )
-                
-                # إضافة المحتوى HTML
                 email_message.attach_alternative(html_content, "text/html")
-                
-                # إرسال البريد
                 result = email_message.send(fail_silently=False)
                 
                 if result == 1:
                     email_sent = True
-                    # رسالة نجاح
+                    method_used = "SendGrid SMTP"
                     messages.success(request, '✅ تم إرسال رسالتك بنجاح! سيتم التواصل معك قريباً.')
-                else:
-                    error_details = "Email send result was 0"
                     
-            except Exception as email_error:
-                # تسجيل تفاصيل الخطأ
-                error_details = str(email_error)
-                print(f"Email sending failed: {email_error}")
-                print(f"Email settings - Host: {settings.EMAIL_HOST}, Port: {settings.EMAIL_PORT}")
-                print(f"Email user: {settings.EMAIL_HOST_USER}")
+            except Exception as error1:
+                error_details += f"Method 1 failed: {error1}; "
+                print(f"Server SMTP failed: {error1}")
                 
-                # محاولة إرسال بطريقة أبسط
+                # الطريقة الثانية: محاولة إرسال بسيط بدون HTML
                 try:
                     send_mail(
                         subject=email_subject,
@@ -209,18 +201,56 @@ def contact_submit(request):
                         fail_silently=False,
                     )
                     email_sent = True
-                    messages.success(request, '✅ تم إرسال رسالتك بنجاح! (طريقة بديلة)')
-                except Exception as fallback_error:
-                    print(f"Fallback email also failed: {fallback_error}")
+                    method_used = "Simple Mail"
+                    messages.success(request, '✅ تم إرسال رسالتك بنجاح! (طريقة بسيطة)')
+                    
+                except Exception as error2:
+                    error_details += f"Method 2 failed: {error2}; "
+                    print(f"Simple mail failed: {error2}")
+                    
+                    # الطريقة الثالثة: Gmail كاحتياط (قد لا يعمل على cPanel)
+                    try:
+                        from django.core.mail import get_connection
+                        
+                        gmail_settings = getattr(settings, 'GMAIL_SETTINGS', {})
+                        if gmail_settings:
+                            gmail_connection = get_connection(
+                                backend='django.core.mail.backends.smtp.EmailBackend',
+                                host=gmail_settings['EMAIL_HOST'],
+                                port=gmail_settings['EMAIL_PORT'],
+                                username=gmail_settings['EMAIL_HOST_USER'],
+                                password=gmail_settings['EMAIL_HOST_PASSWORD'],
+                                use_tls=gmail_settings['EMAIL_USE_TLS'],
+                            )
+                            
+                            gmail_message = EmailMultiAlternatives(
+                                subject=email_subject,
+                                body=text_content,
+                                from_email=gmail_settings['EMAIL_HOST_USER'],
+                                to=[settings.ADMIN_EMAIL],
+                                connection=gmail_connection,
+                            )
+                            gmail_message.attach_alternative(html_content, "text/html")
+                            result = gmail_message.send()
+                            
+                            if result == 1:
+                                email_sent = True
+                                method_used = "Gmail Backup"
+                                messages.success(request, '✅ تم إرسال رسالتك بنجاح! (Gmail)')
+                                
+                    except Exception as error3:
+                        error_details += f"Method 3 (Gmail) failed: {error3}; "
+                        print(f"Gmail backup failed: {error3}")
             
-            # حفظ حالة الإرسال في قاعدة البيانات
+            # حفظ حالة الإرسال مع تفاصيل الطريقة المستخدمة
             contact_message.email_sent = email_sent
-            contact_message.email_error = error_details if not email_sent else ""
+            contact_message.email_error = error_details if not email_sent else f"Success via {method_used}"
             contact_message.save()
             
             # رسالة للمستخدم إذا لم يتم الإرسال
             if not email_sent:
                 messages.success(request, '📝 تم استلام رسالتك وحفظها! سيتم التواصل معك قريباً.')
+                print(f"All email methods failed. Errors: {error_details}")
             
         except Exception as e:
             print(f"Contact form error: {e}")
